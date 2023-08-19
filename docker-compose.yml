@@ -1,6 +1,20 @@
 version: "3.9"
 
 services:
+  referral_service:
+    container_name: referral_service
+    build: .
+    env_file:
+      - .env
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    networks:
+      - referral_system_network
+    depends_on:
+      referral_db:
+        condition: service_healthy
+
   referral_db:
     container_name: referral_db
     image: postgres:15-alpine
@@ -8,6 +22,12 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 80s
     volumes:
       - referral_db_volume:/var/lib/postgresql/data
     ports:
