@@ -1,0 +1,1010 @@
+{
+	"info": {
+		"_postman_id": "c2f2f96c-4093-4ae2-8df4-d603de210fff",
+		"name": "referrals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28982908"
+	},
+	"item": [
+		{
+			"name": "тесты",
+			"item": [
+				{
+					"name": "Регистрация пользователя 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user1_otp\", responseJson.otp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user1_phone}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/otp/"
+					},
+					"response": []
+				},
+				{
+					"name": "Регистрация пользователя 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user2_otp\", responseJson.otp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user2_phone}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/otp/"
+					},
+					"response": []
+				},
+				{
+					"name": "Регистрация пользователя 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user3_otp\", responseJson.otp);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user3_phone}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/otp/"
+					},
+					"response": []
+				},
+				{
+					"name": "Верификация пользователя 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user1_sessionid\", pm.cookies.get(\"sessionid\"));\r",
+									"postman.setEnvironmentVariable(\"user1_csrftoken\", pm.cookies.get(\"csrftoken\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user1_phone}}",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "{{user1_otp}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/verify/"
+					},
+					"response": []
+				},
+				{
+					"name": "Верификация пользователя 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user2_sessionid\", pm.cookies.get(\"sessionid\"));\r",
+									"postman.setEnvironmentVariable(\"user2_csrftoken\", pm.cookies.get(\"csrftoken\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user2_phone}}",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "{{user2_otp}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/verify/"
+					},
+					"response": []
+				},
+				{
+					"name": "Верификация пользователя 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user3_sessionid\", pm.cookies.get(\"sessionid\"));\r",
+									"postman.setEnvironmentVariable(\"user3_csrftoken\", pm.cookies.get(\"csrftoken\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"HOST\");\r",
+									"\r",
+									"cookiesJar.clear(host);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "{{user3_phone}}",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "{{user3_otp}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/auth/verify/"
+					},
+					"response": []
+				},
+				{
+					"name": "Получить профиль пользователя 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct phone number\", function() {\r",
+									"    pm.expect(pm.environment.get(\"user1_phone\")).to.eql(responseJson.phone_number);\r",
+									"});\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"user1_code\", responseJson.invite_code);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user1_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user1_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "Получить профиль пользователя 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct phone number\", function() {\r",
+									"    pm.expect(pm.environment.get(\"user2_phone\")).to.eql(responseJson.phone_number);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user2_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user2_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "Активация кода для пользователя 2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user2_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user2_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct referrer code\", function() {\r",
+									"    pm.expect(pm.environment.get(\"user1_code\")).to.eql(responseJson.referrer_code);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CSRFToken",
+								"value": "{{user2_csrftoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "referrer_code",
+									"value": "{{user1_code}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "Получить профиль пользователя 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct phone number\", function() {\r",
+									"    pm.expect(pm.environment.get(\"user3_phone\")).to.eql(responseJson.phone_number);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user3_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user3_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "Активация кода для пользователя 3",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user3_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user3_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct referrer code\", function() {\r",
+									"    pm.expect(pm.environment.get(\"user1_code\")).to.eql(responseJson.referrer_code);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CSRFToken",
+								"value": "{{user3_csrftoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "referrer_code",
+									"value": "{{user1_code}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "Получить профиль пользователя 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success answer\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct referrals list\", function() {\r",
+									"    pm.expect(responseJson.referrals.length).to.eql(2);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const cookiesJar = pm.cookies.jar();\r",
+									"\r",
+									"const host = pm.environment.get(\"LOCAL_URL\");\r",
+									"const sessionid = pm.environment.get(\"user1_sessionid\");\r",
+									"const csrftoken = pm.environment.get(\"user1_csrftoken\");\r",
+									"\r",
+									"cookiesJar.set(host, \"sessionid\", sessionid);\r",
+									"cookiesJar.set(host, \"csrftoken\", csrftoken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "sessionid={{user1_sessionid}}",
+								"type": "text"
+							}
+						],
+						"url": "{{LOCAL_URL}}/api/referrals/profile/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Регистрация/получение OTP",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone_number",
+											"value": "+799999991",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{LOCAL_URL}}/api/auth/otp/"
+							},
+							"response": [
+								{
+									"name": "Регистрация/получение OTP",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone_number",
+													"value": "+799999991",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{LOCAL_URL}}/api/auth/otp/"
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 19 Aug 2023 15:25:05 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.11.4"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept, Cookie"
+										},
+										{
+											"key": "Allow",
+											"value": "POST, OPTIONS"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "42"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"phone_number\": \"+799999991\",\n    \"otp\": \"5191\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Верификация OTP",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone_number",
+											"value": "+799999991",
+											"type": "text"
+										},
+										{
+											"key": "otp",
+											"value": "5191",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{LOCAL_URL}}/api/auth/verify/"
+							},
+							"response": [
+								{
+									"name": "Верификация OTP",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "phone_number",
+													"value": "+799999991",
+													"type": "text"
+												},
+												{
+													"key": "otp",
+													"value": "5191",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{LOCAL_URL}}/api/auth/verify/"
+									},
+									"status": "Accepted",
+									"code": 202,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 19 Aug 2023 15:26:41 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.11.4"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept, Cookie"
+										},
+										{
+											"key": "Allow",
+											"value": "POST, OPTIONS"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "csrftoken=djbptuVTxPz8kNx2STVS8kxwdrecDodd; expires=Sat, 17 Aug 2024 15:26:41 GMT; Max-Age=31449600; Path=/; SameSite=Lax"
+										},
+										{
+											"key": "Set-Cookie",
+											"value": "sessionid=msa958tyc4ywa4u32l8ilmzmsoqjwqgq; expires=Sat, 02 Sep 2023 15:26:41 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "referrals",
+					"item": [
+						{
+							"name": "Получить профиль текущего пользователя",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{LOCAL_URL}}/api/referrals/profile/"
+							},
+							"response": [
+								{
+									"name": "Получить профиль текущего пользователя",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": "{{LOCAL_URL}}/api/referrals/profile/"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 19 Aug 2023 15:27:09 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.11.4"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept, Cookie"
+										},
+										{
+											"key": "Allow",
+											"value": "GET, PUT"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "92"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"phone_number\": \"+799999991\",\n    \"invite_code\": \"2CPA3s\",\n    \"referrals\": [\n        \"+799999992\",\n        \"+799999993\"\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Установка инвайт-кода",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-CSRFToken",
+										"value": "djbptuVTxPz8kNx2STVS8kxwdrecDodd",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "referrer_code",
+											"value": "5tsjV3",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{LOCAL_URL}}/api/referrals/profile/"
+							},
+							"response": [
+								{
+									"name": "Установка инвайт-кода",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "X-CSRFToken",
+												"value": "djbptuVTxPz8kNx2STVS8kxwdrecDodd",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "referrer_code",
+													"value": "5tsjV3",
+													"type": "text"
+												}
+											]
+										},
+										"url": "{{LOCAL_URL}}/api/referrals/profile/"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 19 Aug 2023 15:30:53 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.11.4"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept, Cookie"
+										},
+										{
+											"key": "Allow",
+											"value": "GET, PUT"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "117"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"phone_number\": \"+799999991\",\n    \"invite_code\": \"2CPA3s\",\n    \"referrer_code\": \"5tsjV3\",\n    \"referrals\": [\n        \"+799999992\",\n        \"+799999993\"\n    ]\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "xxx",
+			"value": "assss"
+		}
+	]
+}
