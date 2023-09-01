@@ -33,7 +33,7 @@ class UserManager(auth_models.BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True")
 
-        return self.__create_user(phone_number, password, extra_fields)
+        return self.__create_user(phone_number, password, **extra_fields)
 
     def __create_user(self, phone_number, password=None, otp=None, **extra_fields):
         if not phone_number:
